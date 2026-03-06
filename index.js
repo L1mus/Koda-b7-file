@@ -16,7 +16,7 @@ const updateContent = async () => {
   const fileName = await question("Nama file yang ingin di update: ");
   try {
     const oldwriteFile = await fs.readFile(
-      path.join(mainDir, fileName),
+      path.join(mainDir, fileName.trim()),
       "utf-8",
     );
     console.log("Isi saat ini:", oldwriteFile);
@@ -33,7 +33,7 @@ const removeFile = async () => {
     "File Mana yang ingin kamu hapus (cth : namaFile.txt)? ",
   );
   const answer = await question("Apakah kamua yakin menghapus File ini Y/n ? ");
-  const filePath = path.join(mainDir, fileName);
+  const filePath = path.join(mainDir, fileName.trim());
 
   if (answer.toLowerCase() === "y") {
     await fs.unlink(filePath, (err) => {
