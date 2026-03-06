@@ -63,6 +63,7 @@ const readFile = () => {
 };
 
 const userInteactive = async () => {
+  console.clear();
   const answer = await question(
     `
     Apa yang ingin anda lakukan ?
@@ -82,6 +83,11 @@ const userInteactive = async () => {
   if (answer == 4) {
     await removeFile();
   }
+  if (answer === "") {
+    console.log("input tidak valid");
+    return userInteactive();
+  }
+  userInteactive();
 };
 
 userInteactive();
