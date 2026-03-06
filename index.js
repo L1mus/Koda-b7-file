@@ -12,7 +12,7 @@ const question = (input) => {
   });
 };
 
-const updateContent = async (fileName, dataToAppend) => {
+const updateContent = async () => {
   const fileName = await question("Nama file yang ingin di update: ");
   try {
     const oldwriteFile = await fs.readFile(
@@ -36,12 +36,13 @@ const removeFile = async () => {
   const filePath = path.join(mainDir, fileName);
 
   if (answer.toLowerCase() === "y") {
-    fs.unlink(filePath, (err) => {
+    await fs.unlink(filePath, (err) => {
       if (err) throw err;
       console.log("File berhasil terhapus");
     });
   } else {
-    return;
+    console.log("file tidak ditemukan!", fileName);
+    return userInteactive();
   }
 };
 
