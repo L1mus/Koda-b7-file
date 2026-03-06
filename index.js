@@ -21,7 +21,11 @@ const updateContent = async () => {
     );
     console.log("Isi saat ini:", oldwriteFile);
     const newwriteFile = await question("Isi yang baru: ");
-    await fs.writeFile(path.join(mainDir, fileName), newwriteFile, "utf-8");
+    await fs.writeFile(
+      path.join(mainDir, fileName.trim()),
+      newwriteFile,
+      "utf-8",
+    );
     console.log("Content sudah diupdate");
   } catch (err) {
     console.log("File tidak ada!", err);
@@ -81,8 +85,10 @@ const userInteactive = async () => {
     await createFile();
   }
   if (answer == 2) {
+    await updateContent();
   }
   if (answer == 3) {
+    await readFile();
   }
   if (answer == 4) {
     await removeFile();
