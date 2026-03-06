@@ -25,8 +25,8 @@ const removeFile = async () => {
   );
   const answer = await question("Apakah kamua yakin menghapus File ini Y/n ? ");
   const filePath = path.join(mainDir, fileName);
-  
-  if (answer.toLowerCase === "y") {
+
+  if (answer.toLowerCase() === "y") {
     fs.unlink(filePath, (err) => {
       if (err) throw err;
       console.log("File berhasil terhapus");
@@ -70,7 +70,7 @@ const userInteactive = async () => {
   if (answer == 3) {
   }
   if (answer == 4) {
-    removeFile();
+    await removeFile();
   }
 };
 
