@@ -13,10 +13,19 @@ const question = (input) => {
 };
 
 const updateContent = async (fileName, dataToAppend) => {
-  fs.appendFile(fileName, dataToAppend, (err) => {
-    if (err) throw err;
-    console.log("Content sudah ditambahkan");
-  });
+  const fileName = await question("Nama file yang ingin di update: ");
+  try {
+    const oldwriteFile = await fs.readFile(
+      path.join(mainDir, fileName),
+      "utf-8",
+    );
+    console.log("Isi saat ini:", oldwriteFile);
+    const newwriteFile = await question("Isi yang baru: ");
+    await fs.writeFile(path.join(mainDir, fileName), newwriteFile, "utf-8");
+    console.log("Content sudah diupdate");
+  } catch (err) {
+    console.log("File tidak ada!", err);
+  }
 };
 
 const removeFile = async () => {
