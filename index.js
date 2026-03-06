@@ -55,11 +55,15 @@ const createFile = async () => {
   });
 };
 
-const readFile = () => {
-  fs.readFile(pathFile, (err) => {
-    if (err) throw err;
-    console.log("File dalam mode : Read");
-  });
+const readFile = async () => {
+  const fileName = await question("Nama file yang ingin di baca: ");
+  const pathFile = path.join(mainDir, fileName.trim());
+  try {
+    const content = fs.readFile(pathFile, "utf-8");
+    console.log("Isi file : ", content);
+  } catch (err) {
+    console.log("file tidak di temukan!", fileName);
+  }
 };
 
 const userInteactive = async () => {
